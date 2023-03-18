@@ -9,24 +9,14 @@ jobs:
   build:
     name: "Build"
     runs-on: ubuntu-latest
+    container: ghcr.io/cross-rs/armv7-unknown-linux-gnueabihf:latest
     steps:
     - uses: actions/checkout@v2
 
-    - name: Install stable toolchain
-      uses: actions-rs/toolchain@v1
-      with:
-        toolchain: stable
-
-    - name: Setup target
+    - name: Build
       run: |
         sudo apt install librust-alsa-sys-dev
-        rustup target add armv7-unknown-linux-gnueabihf
-
-    - uses: actions-rs/cargo@v1
-      with:
-        command: build
-        use-cross: true
-        args: --release --target armv7-unknown-linux-gnueabihf
+        cargo build --release
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2

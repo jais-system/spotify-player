@@ -23,6 +23,7 @@ jobs:
     - uses: actions-rs/cargo@v1
       with:
         command: build
+        use-cross: true
         args: --release --target armv7-unknown-linux-gnueabihf
 
     - name: Upload artifacts

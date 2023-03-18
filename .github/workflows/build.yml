@@ -15,6 +15,7 @@ jobs:
 
     - name: Build
       run: |
+        apt update
         apt install librust-alsa-sys-dev
         cargo build --release
 

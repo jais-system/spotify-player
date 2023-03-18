@@ -18,12 +18,14 @@ jobs:
         toolchain: stable
 
     - name: Setup target
-      run: rustup target add armv7-unknown-linux-gnueabihf
+      run: |
+        sudo apt install librust-alsa-sys-dev
+        rustup target add armv7-unknown-linux-gnueabihf
 
     - uses: actions-rs/cargo@v1
       with:
         command: build
-        use-cross: true
+        use-cross: false
         args: --release --target armv7-unknown-linux-gnueabihf
 
     - name: Upload artifacts

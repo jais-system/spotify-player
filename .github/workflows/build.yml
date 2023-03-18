@@ -12,10 +12,15 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Build
-      run: |
-        rustup target add armv7-unknown-linux-gnueabihf
-        build --release --target armv7-unknown-linux-gnueabihf
+    - name: Install stable toolchain
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+
+    - uses: actions-rs/cargo@v1
+      with:
+        command: build
+        args: --release --target armv7-unknown-linux-gnueabihf
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2

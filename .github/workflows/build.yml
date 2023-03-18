@@ -10,7 +10,7 @@ jobs:
     name: "Build"
     runs-on: ubuntu-latest
     container:
-      image: ragnaroek/rust-raspberry:1.40.0
+      image: ragnaroek/rust-raspberry:1.67.0
       options: --user root
     steps:
     - uses: actions/checkout@v2

@@ -3,12 +3,11 @@ use librespot::core::session::{Session};
 use librespot::core::spotify_id::{SpotifyId};
 use librespot::discovery::Credentials;
 use librespot::playback::{audio_backend, mixer};
-use librespot::playback::config::{AudioFormat, PlayerConfig, VolumeCtrl};
-use librespot::playback::mixer::{Mixer, MixerConfig, NoOpVolume};
-use librespot::playback::player::{Player, PlayerEvent};
+use librespot::playback::config::{AudioFormat, PlayerConfig};
+use librespot::playback::mixer::{Mixer, MixerConfig};
+use librespot::playback::player::{Player};
 use thiserror::Error;
 use anyhow::Result;
-use librespot::playback::mixer::softmixer::SoftMixer;
 
 #[derive(Default)]
 pub struct SpotifyPlayer {

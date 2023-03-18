@@ -15,7 +15,7 @@ jobs:
 
     - name: Build
       run: |
-        sudo apt install librust-alsa-sys-dev
+        apt install librust-alsa-sys-dev
         cargo build --release
 
     - name: Upload artifacts

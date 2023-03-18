@@ -9,14 +9,13 @@ jobs:
   build:
     name: "Build"
     runs-on: ubuntu-latest
-    container:
-      image: ragnaroek/rust-raspberry:1.67.0
-      options: --user root
     steps:
     - uses: actions/checkout@v2
 
     - name: Build
-      run: build --release
+      run: |
+        rustup target add armv7-unknown-linux-gnueabihf
+        build --release --target armv7-unknown-linux-gnueabihf
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2

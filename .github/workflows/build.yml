@@ -40,7 +40,10 @@ jobs:
 #        key: ${{ runner.os }}-${{ matrix.target }}-${{ steps.get-rustc-version.outputs.version }}-${{ hashFiles('Cargo.lock') }}
 
     - name: Test
-      run: echo $PKG_CONFIG_PATH
+      run: |
+        echo $PKG_CONFIG_PATH
+        ls /usr/lib/pkgconfig
+        ls /usr/lib/x86_64-linux-gnu/pkgconfig
 
     - name: Install cross
       run: cargo install cross || true

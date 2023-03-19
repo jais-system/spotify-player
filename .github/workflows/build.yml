@@ -51,7 +51,7 @@ jobs:
 #      run: cargo install cross || true
 
     - name: Build
-      run: cargo build --target armv7-unknown-linux-gnueabihf --no-default-features --feature alsa-backend
+      run: cargo build --target armv7-unknown-linux-gnueabihf --no-default-features --features pulseaudio-backend
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2

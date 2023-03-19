@@ -41,9 +41,8 @@ jobs:
 
     - name: Test
       run: |
+        export PKG_CONFIG_PATH=/usr/lib/pkgconfig
         echo $PKG_CONFIG_PATH
-        ls /usr/lib/pkgconfig
-        ls /usr/lib/x86_64-linux-gnu/pkgconfig
 
     - name: Install cross
       run: cargo install cross || true

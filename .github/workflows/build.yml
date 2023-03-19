@@ -27,7 +27,7 @@ jobs:
       shell: bash
 
     - name: Install developer package dependencies
-      run: sudo apt-get update && sudo apt install -y libunwind-dev && sudo apt-get install libpulse-dev portaudio19-dev libasound2-dev libsdl2-dev gstreamer1.0-dev libgstreamer-plugins-base1.0-dev libavahi-compat-libdnssd-dev
+      run: sudo apt-get update && sudo apt install -y libunwind-dev && sudo apt-get install libpulse-dev portaudio19-dev libasound2-dev libsdl2-dev gstreamer1.0-dev libgstreamer-plugins-base1.0-dev libavahi-compat-libdnssd-dev librust-alsa-sys-dev
 
 #    - name: Cache Rust dependencies
 #      uses: actions/cache@v2

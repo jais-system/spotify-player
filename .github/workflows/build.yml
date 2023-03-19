@@ -44,6 +44,7 @@ jobs:
         export PKG_CONFIG_PATH=/usr/lib/pkgconfig
         echo $PKG_CONFIG_PATH
         export PKG_CONFIG_ALLOW_CROSS=1
+        export PKG_CONFIG_SYSROOT_DIR=/
 
     - name: Install cross
       run: cargo install cross || true

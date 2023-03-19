@@ -13,11 +13,22 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        target: armv7-unknown-linux-gnueabihf
+        override: true
+
     - name: Build
       run: |
         apt-get update
         apt-get install ---yes libasound2-dev pkg-config
-        cargo build --release
+
+    - uses: actions-rs/cargo@v1
+      with:
+        use-cross: false
+        command: build
+        args: --target armv7-unknown-linux-gnueabihf
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2

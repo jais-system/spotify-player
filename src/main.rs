@@ -1,5 +1,3 @@
-#![feature(once_cell)]
-
 mod rest_controllers;
 mod spotify;
 use crate::rest_controllers::{login, play, pause, resume, set_volume};

@@ -6,7 +6,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-librespot = { version = "0.4.2", default-features = false, features = ["rodio-backend"] }
+librespot = { version = "0.4.2", default-features = false }
 rocket = { version = "0.5.0-rc.2", features = ["json"] }
 serde = { version = "1.0", features = ["derive"] }
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
@@ -14,3 +14,15 @@ anyhow = "1.0"
 thiserror = "1.0"
 lazy_static = "1.4"
 once_cell = "1.17"
+
+[features]
+alsa-backend = ["librespot/alsa-backend"]
+portaudio-backend = ["librespot/portaudio-backend"]
+pulseaudio-backend = ["librespot/pulseaudio-backend"]
+jackaudio-backend = ["librespot/jackaudio-backend"]
+rodio-backend = ["librespot/rodio-backend"]
+rodiojack-backend = ["librespot/rodiojack-backend"]
+sdl-backend = ["librespot/sdl-backend"]
+gstreamer-backend = ["librespot/gstreamer-backend"]
+
+default = ["rodio-backend"]

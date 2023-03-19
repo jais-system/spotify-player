@@ -9,27 +9,41 @@ jobs:
   build:
     name: "Build"
     runs-on: ubuntu-latest
-    container: ghcr.io/cross-rs/armv7-unknown-linux-gnueabihf:latest
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-    - uses: actions-rs/toolchain@v1
+    - name: Install toolchain
+      uses: actions-rs/toolchain@v1
       with:
-        toolchain: stable
+        profile: minimal
         target: armv7-unknown-linux-gnueabihf
+        toolchain: stable
         override: true
 
-    - name: Build
-      run: |
-        apt-get update
-        apt-get install ---yes libasound2-dev pkg-config
-        export PKG_CONFIG_SYSROOT_DIR=/
+    - name: Get Rustc version
+      id: get-rustc-version
+      run: echo "::set-output name=version::$(rustc -V)"
+      shell: bash
 
-    - uses: actions-rs/cargo@v1
-      with:
-        use-cross: false
-        command: build
-        args: --target armv7-unknown-linux-gnueabihf
+    - name: Install developer package dependencies
+      run: sudo apt-get update && sudo apt install -y libunwind-dev && sudo apt-get install libpulse-dev portaudio19-dev libasound2-dev libsdl2-dev gstreamer1.0-dev libgstreamer-plugins-base1.0-dev libavahi-compat-libdnssd-dev
+
+#    - name: Cache Rust dependencies
+#      uses: actions/cache@v2
+#      with:
+#        path: |
+#          ~/.cargo/registry/index
+#          ~/.cargo/registry/cache
+#          ~/.cargo/git
+#          target
+#        key: ${{ runner.os }}-${{ matrix.target }}-${{ steps.get-rustc-version.outputs.version }}-${{ hashFiles('Cargo.lock') }}
+
+    - name: Install cross
+      run: cargo install cross || true
+
+    - name: Build
+      run: cross build --target armv7-unknown-linux-gnueabihf --no-default-features
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2

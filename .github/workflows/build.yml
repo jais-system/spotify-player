@@ -43,7 +43,7 @@ jobs:
       run: cargo install cross || true
 
     - name: Build
-      run: cross build --target armv7-unknown-linux-gnueabihf --no-default-features
+      run: cargo build --target armv7-unknown-linux-gnueabihf --no-default-features
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2

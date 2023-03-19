@@ -15,8 +15,8 @@ jobs:
 
     - name: Build
       run: |
-        apt update
-        apt install librust-alsa-sys-dev
+        apt-get update
+        apt-get install libasound2-dev pkg-config
         cargo build --release
 
     - name: Upload artifacts
